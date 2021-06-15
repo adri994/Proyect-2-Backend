@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 const userModel = require('../models/users.model')
 
 exports.showUsers = async (req, res) => {
@@ -11,7 +12,9 @@ exports.showUsers = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const userEdited = await userModel.findByIdAndUpdate(req.params.id, req.body)
+    const HASHED_PWD = bcrypt.hashSync(req.body.password, 10)
+    req.body.password = HASHED_PWD
+    const userEdited = await userModel.findByIdAndUpdate(res.locals.result._id, req.body, { new: true })
     userEdited.save()
     res.json(userEdited)
   } catch (error) {
@@ -21,7 +24,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const userDeleted = await userModel.findById(req.params.id)
+    const userDeleted = await userModel.findById(res.locals.result._id)
     res.json(userDeleted)
     userDeleted.remove()
   } catch (error) {

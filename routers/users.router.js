@@ -8,7 +8,7 @@ const {
 } = require('../controllers/users.controller')
 
 router.get('/', checkAuth, showUsers)
-router.put('/:id', checkAuth, updateUser)
-router.delete('/:id', checkAuth, deleteUser)
+router.put('/', checkAuth, updateUser)
+router.delete('/', checkAuth, deleteUser)
 
 module.exports = router

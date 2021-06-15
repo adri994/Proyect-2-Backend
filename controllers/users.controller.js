@@ -25,8 +25,15 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const userDeleted = await userModel.findById(res.locals.result._id)
-    res.json(userDeleted)
-    userDeleted.remove()
+    bcrypt.compare(req.body.password, userDeleted.password, (err, result) => {
+      if (err) throw new Error(err)
+      if (!result) {
+        return res.json({ error: 'Wrong email or password' })
+      } else {
+        res.json(userDeleted)
+        userDeleted.remove()
+      }
+    })
   } catch (error) {
     res.status(400).json({ Msg: 'Error' })
   }

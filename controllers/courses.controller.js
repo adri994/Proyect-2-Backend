@@ -16,16 +16,7 @@ exports.createCourse = async (req, res) => {
 
 exports.showCourses = async (req, res) => {
   try {
-    const courses = await courseModel.find()
-    res.status(200).json(courses)
-  } catch (error) {
-    res.status(400).json({ Msg: 'Error' })
-  }
-}
-
-exports.showCoursesByArea = async (req, res) => {
-  try {
-    const courses = await courseModel.find({ area: req.params.area })
+    const courses = await courseModel.find(req.query)
     console.log(courses)
     res.status(200).json(courses)
   } catch (error) {

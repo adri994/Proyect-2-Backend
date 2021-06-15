@@ -25,7 +25,6 @@ exports.login = async (req, res) => {
     .findOne({ email: req.body.email })
     .then(data => {
       if (data) {
-        console.log(data)
         bcrypt.compare(req.body.password, data.password, (err, result) => {
           if (err) throw new Error(err)
           if (!result) {
@@ -41,7 +40,7 @@ exports.login = async (req, res) => {
               })
           }
         })
-      }
+      } else res.status(500).json({ msg: 'Wrong email or password' })
     })
     .catch(err => {
       console.log(err)

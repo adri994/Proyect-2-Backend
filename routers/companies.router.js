@@ -23,7 +23,8 @@ router.post('/addCourse', [
 router.put('/:id_course', editCourse)
 router.delete('/:id_course', deleteCourse)
 
-// router.put('/', editCompany)
-//router.delete('/:id', deleteCompany)
+// Company
+router.put('/', editCompany)
+router.delete('/', deleteCompany)
 
 module.exports = router

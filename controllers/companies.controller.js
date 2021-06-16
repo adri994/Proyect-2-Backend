@@ -18,9 +18,11 @@ const addCompany = async (req, res) => {
 }
 
 const editCompany = async (req, res) => {
+  const verify = jwt.verify(req.headers.token, process.env.SECRET)
+  const { id } = verify
   try {
     const user = req.body
-    const newUser = await CompaniesModel.findByIdAndUpdate(req.params.id, user)
+    const newUser = await CompaniesModel.findByIdAndUpdate(id, user)
     res.json(newUser)
   } catch (error) {
     res.status(400).json({ msg: 'Error' })
@@ -28,8 +30,10 @@ const editCompany = async (req, res) => {
 }
 
 const deleteCompany = async (req, res) => {
+  const verify = jwt.verify(req.headers.token, process.env.SECRET)
+  const { id } = verify
   try {
-    const newUser = await CompaniesModel.findByIdAndDelete(req.params.id)
+    const newUser = await CompaniesModel.findByIdAndDelete(id)
     newUser.save()
     res.json(newUser)
   } catch (error) {

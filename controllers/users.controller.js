@@ -1,6 +1,7 @@
 const userModel = require('../models/users.model')
 
 const createUser = async (req, res) => {
+  console.log('adrian')
   try {
     const user = req.body
     const newUser = await userModel.create(user)

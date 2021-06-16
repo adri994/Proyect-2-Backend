@@ -37,10 +37,11 @@ exports.signup = (req, res) => {
 }
 
 exports.login = async (req, res) => {
+  const { rol = 'user' } = req.body
   const { email, password, _id } = req.user
   const isUser = await bcrypt.compare(req.body.password, password)
   if (isUser) {
-    const token = await createJWT(_id)
+    const token = await createJWT(_id, rol)
     res.json({ token, email })
   } else {
     res.json({ Msg: 'Wrong username or password' })

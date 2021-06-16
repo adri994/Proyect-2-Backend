@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { checkAuth } = require('../utils/jwt')
+const { checkUser } = require('../utils/jwt')
 
 const {
   showUsers,
@@ -7,8 +7,8 @@ const {
   deleteUser
 } = require('../controllers/users.controller')
 
-router.get('/', checkAuth, showUsers)
-router.put('/', checkAuth, updateUser)
-router.delete('/', checkAuth, deleteUser)
+router.get('/', checkUser, showUsers)
+router.put('/', checkUser, updateUser)
+router.delete('/', checkUser, deleteUser)
 
 module.exports = router

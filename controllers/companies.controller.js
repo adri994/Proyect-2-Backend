@@ -9,9 +9,9 @@ const jobModel = require('../models/jobs.model')
 const addCompany = async (req, res) => {
   try {
     const user = req.body
-    const newUser = await companyModel.create(user)
+    const newCompany = await companyModel.create(user)
     const token = await createJWT(user._id)
-    res.json({ newUser, token })
+    res.json({ newCompany, token })
   } catch (error) {
     res.status(400).json({ msg: 'Error while add company' })
   }
@@ -22,8 +22,8 @@ const editCompany = async (req, res) => {
   const { id } = verify
   try {
     const user = req.body
-    const newUser = await companyModel.findByIdAndUpdate(id, user)
-    res.json(newUser)
+    const companyEdited = await companyModel.findByIdAndUpdate(id, user)
+    res.json(companyEdited)
   } catch (error) {
     res.status(400).json({ msg: 'Error while edit company' })
   }
@@ -33,16 +33,16 @@ const deleteCompany = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
   try {
-    const newUser = await companyModel.findByIdAndDelete(id)
-    res.json(newUser)
+    const companyDel = await companyModel.findByIdAndDelete(id)
+    res.json(companyDel)
   } catch (error) {
     res.status(400).json({ msg: 'Error while delete company' })
   }
 }
 
-const addCourse = async (req, res) => {
+const createCourse = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
-  const { id } = verify
+  const { id, rol } = verify
   req.body.id_company = mongoose.Types.ObjectId(id)
 
   const [course, company] = await Promise.all([
@@ -54,75 +54,80 @@ const addCourse = async (req, res) => {
   res.json({ course, company })
 }
 
-const editCourse = async (req, res) => {
+const updateCourse = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
   const query = { id_company: id, _id: req.params.id_course }
-  const editCourse = await courseModel.findOneAndUpdate(query, req.body, { new: true })
-  res.json(editCourse)
+  const courseEdited = await courseModel.findOneAndUpdate(query, req.body, { new: true })
+  res.json(courseEdited)
 }
 
 const deleteCourse = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
   const query = { id_company: id, _id: req.params.id_course }
-  const deleteCompany = await courseModel.findOneAndDelete(query)
-  res.json(deleteCompany)
+  const courseDel = await courseModel.findOneAndDelete(query)
+  res.json(courseDel)
 }
 
 const getAllCourses = async (req, res) => {
-  const verify = jwt.verify(req.headers.token, process.env.SECRET)
-  const { id } = verify
+  let showCourses
+  const { id, rol } = req.token
   const query = { id_company: id }
-  const showCourse = await courseModel.find(query)
-  res.json(showCourse)
+  if (rol === 'user') showCourses = await courseModel.find()
+  else showCourses = await courseModel.find(query)
+
+  res.json(showCourses)
 }
 
 // Offer
 
-const addJob = async (req, res) => {
+const createOffer = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
-  const { id } = verify
+  const { id, rol } = verify
+  if (rol === 'user') return res.status(400).json({ msg: 'Error while add offer' })
   req.body.id_company = mongoose.Types.ObjectId(id)
-  const add = await jobModel.create(req.body)
-  res.json(add)
+  const jobAdd = await jobModel.create(req.body)
+  res.json(jobAdd)
 }
 
-const getAllOffer = async (req, res) => {
-  const verify = jwt.verify(req.headers.token, process.env.SECRET)
-  const { id } = verify
+const getAllOffers = async (req, res) => {
+  let showOffers
+  const { id, rol } = req.token
   const query = { id_company: id }
-  const showCourse = await jobModel.find(query)
-  res.json(showCourse)
+  if (rol === 'user') showOffers = await jobModel.find()
+  else showOffers = await jobModel.find(query)
+
+  res.json(showOffers)
 }
 
-const deleteJob = async (req, res) => {
+const deleteOffer = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
   const query = { id_company: id, _id: req.params.id_offer }
-  const deleteOffer = await jobModel.findOneAndDelete(query)
+  const oferDel = await jobModel.findOneAndDelete(query)
 
-  res.json(deleteOffer)
+  res.json(oferDel)
 }
 
-const editJob = async (req, res) => {
+const updateOffer = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
   const query = { id_company: id, _id: req.params.id_offer }
-  const editCourse = await jobModel.findOneAndUpdate(query, req.body, { new: true })
-  res.json(editCourse)
+  const jobEdited = await jobModel.findOneAndUpdate(query, req.body, { new: true })
+  res.json(jobEdited)
 }
 
 module.exports = {
   addCompany,
   editCompany,
   deleteCompany,
-  addCourse,
-  editCourse,
+  createCourse,
+  updateCourse,
   deleteCourse,
   getAllCourses,
-  addJob,
-  getAllOffer,
-  deleteJob,
-  editJob
+  createOffer,
+  deleteOffer,
+  updateOffer,
+  getAllOffers
 }

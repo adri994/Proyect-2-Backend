@@ -12,8 +12,8 @@ exports.createAdmin = async (req, res) => {
       req.body.password = HASHED_PWD
       req.body.pass_admin = HASHED_PWD2
       req.body.admin = true
-      const newAdmin = await adminModel.create(req.body)
-      res.json(newAdmin)
+      const adminNew = await adminModel.create(req.body)
+      res.json(adminNew)
     } else {
       res.json({ Error: 'Your admin password is wrong' })
     }
@@ -53,9 +53,9 @@ exports.loginAdmin = async (req, res) => {
 exports.signupUser = (req, res) => {
   const HASHED_PWD = bcrypt.hashSync(req.body.password, 10)
   req.body.password = HASHED_PWD
-  userModel.create(req.body).then(newUser => {
-    newUser.save()
-    res.json({ name: newUser.name, email: newUser.email })
+  userModel.create(req.body).then(userNew => {
+    userNew.save()
+    res.json({ name: userNew.name, email: userNew.email })
       .catch(err => {
         console.log(err)
         res.status(500).json({ Msg: 'Error' })
@@ -65,9 +65,9 @@ exports.signupUser = (req, res) => {
 
 exports.adminDeleteUser = async (req, res) => {
   try {
-    const userDeleted = await userModel.findOne({ email: req.body.email })
-    res.json(userDeleted)
-    userDeleted.remove()
+    const userDel = await userModel.findOne({ email: req.body.email })
+    res.json(userDel)
+    userDel.remove()
   } catch (error) {
     res.status(400).json({ Msg: 'Error email not found' })
   }

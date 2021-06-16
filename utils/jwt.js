@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/users.model')
 
-exports.createJWT = (id) => {
+exports.createJWT = (id, rol) => {
   return new Promise((resolve, reject) => {
-    const payload = { id }
+    const payload = { id, rol }
     jwt.sign(payload, process.env.SECRET, {
       expiresIn: '1h'
     }, (err, token) => {
@@ -16,7 +16,7 @@ exports.createJWT = (id) => {
   })
 }
 
-exports.checkAuth = (req, res, next) => {
+/* exports.checkUser = (req, res, next) => {
   jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
     if (err) { res.status(403).json({ error: 'Please Log-in or Sign-up' }) }
     userModel
@@ -29,5 +29,15 @@ exports.checkAuth = (req, res, next) => {
           res.json({ err: 'Token not valid' })
         }
       })
+  })
+}
+
+*/
+
+exports.checkUser = (req, res, next) => {
+  jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
+    if (err) { return res.status(403).json({ Msg: 'Please Log-in or Sign-up' }) }
+    req.token = token
+    next()
   })
 }

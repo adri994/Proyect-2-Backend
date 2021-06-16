@@ -13,4 +13,4 @@ authRouter
     validateDB
   ], login)
 
-exports.authRouter = authRouter
+module.exports = authRouter

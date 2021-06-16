@@ -7,8 +7,8 @@ exports.createCourse = async (req, res) => {
       arrArea.push(element.toLowerCase())
     })
     req.body.area = arrArea
-    const newCourse = await courseModel.create(req.body)
-    res.json(newCourse)
+    const courseNew = await courseModel.create(req.body)
+    res.json(courseNew)
   } catch (error) {
     res.status(500).json({ Msg: 'Error creating course' })
   }

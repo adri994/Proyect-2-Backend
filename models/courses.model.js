@@ -16,6 +16,10 @@ const courseSchema = new mongoose.Schema({
   duration: {
     type: String
   },
+  id_company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'companie'
+  },
   certificate: {
     type: Boolean,
     default: false

@@ -4,9 +4,13 @@ const {
   signup,
   login
 } = require('../controllers/auth.controller')
+// const validateInput = require('../middleware/validateInput')
+const { validateDB } = require('../utils/validateData')
 
 authRouter
   .post('/signup', signup)
-  .post('/login', login)
+  .post('/login', [
+    validateDB
+  ], login)
 
 exports.authRouter = authRouter

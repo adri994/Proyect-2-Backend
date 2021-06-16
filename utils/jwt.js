@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/users.model')
-// const { CompanyModel } = require('../api/models/companies.model')
 
 exports.createJWT = (id) => {
   return new Promise((resolve, reject) => {

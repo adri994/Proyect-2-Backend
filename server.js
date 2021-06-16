@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
+
 class Server {
   constructor () {
     this.api = express()
@@ -33,7 +34,7 @@ class Server {
   }
 
   middleware () {
-    this.api.use(cors())
+    //this.api.use(cors())
     this.api.use(morgan('dev'))
     this.api.use(express.json())
   }

@@ -10,17 +10,16 @@ exports.createCourse = async (req, res) => {
     const newCourse = await courseModel.create(req.body)
     res.json(newCourse)
   } catch (error) {
-    res.status(500).json({ msg: 'Error' })
+    res.status(500).json({ Msg: 'Error creating course' })
   }
 }
 
 exports.showCourses = async (req, res) => {
   try {
     const courses = await courseModel.find(req.query)
-    console.log(courses)
     res.status(200).json(courses)
   } catch (error) {
-    res.status(400).json({ Msg: 'Error' })
+    res.status(400).json({ Msg: 'Error can not show courses' })
   }
 }
 
@@ -35,7 +34,7 @@ exports.registerUser = async (req, res) => {
       res.status(409).json({ Msg: 'User already registered' })
     }
   } catch (error) {
-    res.status(400).json({ Msg: 'Error' })
+    res.status(400).json({ Msg: 'Error while register user' })
   }
 }
 
@@ -51,6 +50,6 @@ exports.unsuscribeUser = async (req, res) => {
       res.status(409).json({ Msg: 'You are not register in this course' })
     }
   } catch (error) {
-    res.status(400).json({ Msg: 'Error' })
+    res.status(400).json({ Msg: 'Unsuscribe user is NOT possible' })
   }
 }

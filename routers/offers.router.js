@@ -15,12 +15,12 @@ router.post('/', [
   isCompany,
   validateInput
 ], createOffer)
-router.put('/:id_offer', [
+router.put('/:idOffer', [
   checkUser,
   isCompany,
   validateInput
 ], updateOffer)
-router.delete('/:id_offer', [
+router.delete('/:idOffer', [
   checkUser,
   isCompany,
   validateInput

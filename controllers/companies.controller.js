@@ -59,7 +59,7 @@ const createCourse = async (req, res) => {
 
 const updateCourse = async (req, res) => {
   const { id } = req.token
-  const query = { id_company: id, _id: req.params.id_course }
+  const query = { id_company: id, _id: req.params.idCourse }
   try {
     const courseEdited = await courseModel.findOneAndUpdate(query, req.body, { new: true })
     res.json(courseEdited)
@@ -70,7 +70,7 @@ const updateCourse = async (req, res) => {
 
 const deleteCourse = async (req, res) => {
   const { id } = req.token
-  const query = { id_company: id, _id: req.params.id_course }
+  const query = { id_company: id, _id: req.params.idCourse }
   try {
     const courseDel = await courseModel.findOneAndDelete(query)
     res.json(courseDel)
@@ -119,11 +119,10 @@ const getAllOffers = async (req, res) => {
 }
 
 const deleteOffer = async (req, res) => {
-  let oferDel
   const { id } = req.token
-  const query = { id_company: id, _id: req.params.id_offer }
+  const query = { id_company: id, _id: req.params.idOffer }
   try {
-    oferDel = await jobModel.findOneAndDelete(query)
+    const oferDel = await jobModel.findOneAndDelete(query)
     res.json(oferDel)
   } catch (error) {
     res.json({ msg: 'Error while edit offer' })
@@ -131,11 +130,10 @@ const deleteOffer = async (req, res) => {
 }
 
 const updateOffer = async (req, res) => {
-  let jobEdited
   const { id } = req.token
-  const query = { id_company: id, _id: req.params.id_offer }
+  const query = { id_company: id, _id: req.params.idOffer }
   try {
-    jobEdited = await jobModel.findOneAndUpdate(query, req.body, { new: true })
+    const jobEdited = await jobModel.findOneAndUpdate(query, req.body, { new: true })
     res.json(jobEdited)
   } catch (error) {
     res.json({ msg: 'Error while edit offer' })

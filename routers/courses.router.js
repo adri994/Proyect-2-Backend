@@ -21,13 +21,13 @@ router.post('/', [
   validateInput
 ], createCourse)
 
-router.put('/:id_course', [
+router.put('/:idCourse', [
   checkUser,
   isCompany,
   validateInput
 ], updateCourse)
 
-router.delete('/:id_course', [
+router.delete('/:idCourse', [
   checkUser,
   isCompany,
   validateInput], deleteCourse)

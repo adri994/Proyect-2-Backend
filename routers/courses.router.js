@@ -22,12 +22,14 @@ router.post('/', [
 ], createCourse)
 
 router.put('/:idCourse', [
+  check('idCourse', 'El curso no existe').isMongoId(),
   checkUser,
   isCompany,
   validateInput
 ], updateCourse)
 
 router.delete('/:idCourse', [
+  check('idCourse', 'El curso no existe').isMongoId(),
   checkUser,
   isCompany,
   validateInput], deleteCourse)

@@ -16,7 +16,7 @@ const { isCompany, validateInput } = require('../middleware/validateInput')
 
 const { checkUser } = require('../utils/jwt')
 
-router.get('/', [checkUser, isCompany], getAllOffers)
+router.get('/', checkUser, getAllOffers)
 
 router.put('/:offerId', [
   checkUser,

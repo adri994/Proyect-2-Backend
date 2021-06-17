@@ -147,9 +147,10 @@ exports.adminShowCourses = async (req, res) => {
 }
 
 exports.adminCreateCourse = async (req, res) => {
-  const findCompany = await companyModel.findById(req.params.companyId)
-  if (!findCompany) return res.status(404).json({ Msg: 'Error company not found' })
   try {
+    const findCompany = await companyModel.findById(req.params.companyId)
+    if (!findCompany) return res.status(404).json({ Msg: 'Error company not found' })
+    req.body.id_company = mongoose.Types.ObjectId(req.params.companyId)
     const arrArea = []
     req.body.area.forEach(element => {
       arrArea.push(element.toLowerCase())

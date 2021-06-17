@@ -17,10 +17,15 @@ const { isCompany, validateInput } = require('../middleware/validateInput')
 const { checkUser } = require('../utils/jwt')
 
 router.get('/', [checkUser, isCompany], getAllOffers)
-router.put('/:offerId', updateOffer)
-router.delete('/:offerId', deleteOffer)
+
+router.put('/:offerId', [
+  checkUser,
+  isCompany,
+  validateInput
+], updateOffer)
 router.put('/:offerId/inscribe', checkUser, inscribeOfferUser)
 router.put('/:offerId/unsuscribe', checkUser, unsuscribeOfferUser)
+
 router.post('/', [
   check('title', 'Tittle must not be empty').not().isEmpty(),
   check('description', 'Description must not be empty').not().isEmpty(),
@@ -29,11 +34,7 @@ router.post('/', [
   isCompany,
   validateInput
 ], createOffer)
-router.put('/:offerId', [
-  checkUser,
-  isCompany,
-  validateInput
-], updateOffer)
+
 router.delete('/:offerId', [
   checkUser,
   isCompany,

@@ -11,7 +11,7 @@ router.use('/users', userRouter)
 router.use('/courses', courseRouter)
 router.use('/auth', authRouter)
 router.use('/admin', adminRouter)
-router.use('/company', companyRouter)
+router.use('/companies', companyRouter)
 router.use('/offers', offerRouter)
 
 module.exports = router

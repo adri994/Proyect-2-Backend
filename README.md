@@ -92,35 +92,37 @@
 | PUT    | '/admin/users/:userId'               | YES  | Edit User                    |
 | PUT    | '/admin/companies/:companyId'        | YES  | Edit Company                 |
 | PUT    | '/admin/offers/:offerId'             | YES  | Edit Offer                   |
-| PUT    | '/admin/offers/:offerId/suscribe'    | YES  |  Suscribe an user in Offer   |
+| PUT    | '/admin/offers/:offerId/suscribe'    | YES  | Suscribe an user in Offer    |
 | PUT    | '/admin/offers/:offerId/unsuscribe'  | YES  | Unsuscribe an user in Offer  |
 | PUT    | '/admin/courses/:courseId'           | YES  | Edit Course                  |
 | PUT    | '/admin/courses/:courseId/suscribe'  | YES  | Suscribe an user in Course   |
 | PUT    | '/admin/courses/:courseId/unsuscribe'| YES  | Unsuscribe an user in Course |
 | DELETE | '/admin/users/:userId'               | YES  | Delete User                  |
-| DELETE | '/admin/offers/:companyId'           | YES  | Delete Company               |
-| DELETE | '/admin/courses/:courseId'           | YES  | Delete Course                |
 | DELETE | '/admin/offers/:offerId'             | YES  | Delete offer                 |
+| DELETE | '/admin/courses/:courseId'           | YES  | Delete Course                |
 | DELETE | '/admin/companies/companyId'         | YES  | Delete current company acc.  |
 
 ## AUTHENTICATION ENDPOINTS ##
 
-| METHOD | URL            | AUTH | FUNCTION             |
-|--------|----------------|------|----------------------|
-| POST   | '/auth/signup' | NO   | Create a new account |
-| POST   | '/auth/login'  | NO   | Authenticate a user  |
+| METHOD | URL            | AUTH | FUNCTION                             |
+|--------|----------------|------|--------------------------------------|
+| POST   | '/auth/signup' | NO   | Create a new account User/Company    |
+| POST   | '/auth/login'  | NO   | Authenticate a User/Company          |
 
 ## USERS ENDPOINTS ##
 
 | METHOD | URL               | AUTH | FUNCTION                    |
 |--------|-------------------|------|-----------------------------|
 | GET    | '/offers'         | NO   | Get Job Offers              |
-| GET    | '/courses'        | NO   | Get Courses                 |
-| GET    | '/courses?'       | NO   | Get Courses filter          |
-| GET    | '/offers'         | NO   | Get Job Offers filter       |
+| GET    | '/:offerId'       | YES  | Get a offer                 |
 | GET    | '/offers?'        | NO   | Get Job Offers filter       |
-| GET    | '/:companyId'     | YES  | Get one Company             |
-| GET    | '/:courseId'      | YES  | Get one Course              |
+| GET    | '/companies       | NO   | Get Companies               |
+| GET    | '/:companyId'     | YES  | Get a Company               |
+| GET    | '/courses'        | NO   | Get Courses                 |
+| GET    | '/:courseId'      | YES  | Get a Course                |
+| GET    | '/courses?'       | NO   | Get Courses filter          |
+
+
 | PUT    | '/users'          | YES  | Edit User profile           |
 | DELETE | '/users'          | YES  | Delete current user account |
 

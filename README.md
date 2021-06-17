@@ -76,7 +76,21 @@
 
 ## ADMINS ENDPOINTS ##
 
-
+| METHOD | URL                       | AUTH | FUNCTION                    |
+|--------|---------------------------|------|-----------------------------|
+| GET    | '/admin/companies'              | YES  | Get all Companies           |
+| GET    | '/admin/offers'                 | YES  | Get all your Offers         |
+| GET    | '/admin/courses'                | YES  | Get all your Courses        |
+| GET    | '/admin/courses?'               | YES  | Get Courses filter          |
+| GET    | '/admin/offers?'                | YES  | Get Offers filter           |
+| POST   | '/admin/offers'                 | YES  | New Offer                   |
+| POST   | '/admin/courses'                | YES  | New Course                  |
+| PUT    | '/admin/offers/:offerId'        | YES  | Edit Offer                  |
+| PUT    | '/admin/courses/:courseId'      | YES  | Edit Course                 |
+| PUT    | '/admin/companies'              | YES  | Edit Company profile        |
+| DELETE | '/admin/courses/:courseId'      | YES  | Delete Course               |
+| DELETE | '/admin/offers/:courseId'       | YES  | Delete offer                |
+| DELETE | '/admin/companies'              | YES  | Delete current company acc. |
 
 ## AUTHENTICATION ENDPOINTS ##
 

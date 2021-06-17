@@ -76,21 +76,32 @@
 
 ## ADMINS ENDPOINTS ##
 
-| METHOD | URL                       | AUTH | FUNCTION                    |
-|--------|---------------------------|------|-----------------------------|
-| GET    | '/admin/companies'              | YES  | Get all Companies           |
-| GET    | '/admin/offers'                 | YES  | Get all your Offers         |
-| GET    | '/admin/courses'                | YES  | Get all your Courses        |
-| GET    | '/admin/courses?'               | YES  | Get Courses filter          |
-| GET    | '/admin/offers?'                | YES  | Get Offers filter           |
-| POST   | '/admin/offers'                 | YES  | New Offer                   |
-| POST   | '/admin/courses'                | YES  | New Course                  |
-| PUT    | '/admin/offers/:offerId'        | YES  | Edit Offer                  |
-| PUT    | '/admin/courses/:courseId'      | YES  | Edit Course                 |
-| PUT    | '/admin/companies'              | YES  | Edit Company profile        |
-| DELETE | '/admin/courses/:courseId'      | YES  | Delete Course               |
-| DELETE | '/admin/offers/:courseId'       | YES  | Delete offer                |
-| DELETE | '/admin/companies'              | YES  | Delete current company acc. |
+| METHOD | URL                                  | AUTH | FUNCTION                     |
+|--------|--------------------------------------|------|------------------------------| 
+| GET    | '/admin/users'                       | YES  | Get all Users                | 
+| GET    | '/admin/companies'                   | YES  | Get all Companies            | 
+| GET    | '/admin/offers'                      | YES  | Get all your Offers          |
+| GET    | '/admin/courses'                     | YES  | Get all your Courses         |
+| GET    | '/admin/courses?'                    | YES  | Get Courses filter           |
+| GET    | '/admin/offers?'                     | YES  | Get Offers filter            |
+| POST   | '/admin                              | YES  | New Admin                    |
+| POST   | '/admin/users'                       | YES  | New user                     |
+| POST   | '/admin/companies'                   | YES  | New Company                  |
+| POST   | '/admin/offers'                      | YES  | New Offer                    |
+| POST   | '/admin/courses'                     | YES  | New Course                   |
+| PUT    | '/admin/users/:userId'               | YES  | Edit User                    |
+| PUT    | '/admin/companies/:companyId'        | YES  | Edit Company                 |
+| PUT    | '/admin/offers/:offerId'             | YES  | Edit Offer                   |
+| PUT    | '/admin/offers/:offerId/suscribe'    | YES  |  Suscribe an user in Offer   |
+| PUT    | '/admin/offers/:offerId/unsuscribe'  | YES  | Unsuscribe an user in Offer  |
+| PUT    | '/admin/courses/:courseId'           | YES  | Edit Course                  |
+| PUT    | '/admin/courses/:courseId/suscribe'  | YES  | Suscribe an user in Course   |
+| PUT    | '/admin/courses/:courseId/unsuscribe'| YES  | Unsuscribe an user in Course |
+| DELETE | '/admin/users/:userId'               | YES  | Delete User                  |
+| DELETE | '/admin/offers/:companyId'           | YES  | Delete Company               |
+| DELETE | '/admin/courses/:courseId'           | YES  | Delete Course                |
+| DELETE | '/admin/offers/:offerId'             | YES  | Delete offer                 |
+| DELETE | '/admin/companies/companyId'         | YES  | Delete current company acc.  |
 
 ## AUTHENTICATION ENDPOINTS ##
 

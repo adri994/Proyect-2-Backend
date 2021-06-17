@@ -43,14 +43,14 @@ router.get('/courses', checkAdmin, adminShowCourses)
 router.post('/courses/:companyId', checkAdmin, adminCreateCourse)
 router.put('/courses/:courseId', checkAdmin, adminUpdateCourse)
 router.delete('/courses/:courseId', checkAdmin, adminDeleteCourse)
-router.put('/courses/:courseId/:userId/suscribe', checkAdmin, adminSuscribeCourse)
-router.put('/courses/:courseId/:userId/unsuscribe', checkAdmin, adminUnsuscribeCourse)
+router.put('/courses/:courseId/suscribe', checkAdmin, adminSuscribeCourse)
+router.put('/courses/:courseId/unsuscribe', checkAdmin, adminUnsuscribeCourse)
 
 router.get('/offers', checkAdmin, adminShowOffers)
 router.post('/offers/:companyId', checkAdmin, adminCreateOffer)
 router.put('/offers/:offerId', checkAdmin, adminUpdateOffer)
 router.delete('/offers/:offerId', checkAdmin, adminDeleteOffer)
-router.put('/offers/:offerId/userId', checkAdmin, adminSuscribeOffer)
-router.put('/offers/:id/unsuscribe/userId', checkAdmin, adminUnsuscribeOffer)
+router.put('/offers/:offerId/suscribe', checkAdmin, adminSuscribeOffer)
+router.put('/offers/:offerId/unsuscribe', checkAdmin, adminUnsuscribeOffer)
 
 module.exports = router

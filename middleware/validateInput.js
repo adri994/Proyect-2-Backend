@@ -14,7 +14,4 @@ const isCompany = (req, res, next) => {
   next()
 }
 
-module.exports = {
-  validateInput,
-  isCompany
-}
+module.exports = { validateInput, isCompany }

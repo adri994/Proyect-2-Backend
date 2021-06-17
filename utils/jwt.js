@@ -18,6 +18,7 @@ exports.createJWT = (id, rol) => {
 exports.checkUser = (req, res, next) => {
   jwt.verify(req.headers.token, process.env.SECRET, (err, token) => {
     if (err) { return res.status(403).json({ Msg: 'Please Log-in or Sign-up' }) }
+
     req.token = token
     next()
   })

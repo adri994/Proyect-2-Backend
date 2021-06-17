@@ -178,13 +178,18 @@ exports.adminUpdateCourse = async (req, res) => {
 
 exports.adminSuscribeCourse = async (req, res) => {
   try {
-    const course = await courseModel.findbyId(req.params.courseId)
-    if (!course.registered.includes(req.params.userId)) {
-      course.registered.push(req.params.userId)
-      course.save()
-      res.json(course)
-    } else {
-      res.status(409).json({ Msg: 'User already registered' })
+    const [findCourse, findUser] = await Promise.all([
+      courseModel.findById(req.params.courseId),
+      userModel.findOne(req.body)
+    ])
+    if (findCourse && findUser) {
+      if (!findCourse.registered.includes(findUser._id)) {
+        findCourse.registered.push(findUser._id)
+        findCourse.save()
+        res.json(findCourse)
+      } else {
+        res.status(409).json({ Msg: 'User already registered' })
+      }
     }
   } catch (error) {
     res.status(400).json({ Msg: 'Error while register user' })
@@ -193,17 +198,22 @@ exports.adminSuscribeCourse = async (req, res) => {
 
 exports.adminUnsuscribeCourse = async (req, res) => {
   try {
-    const course = await courseModel.findById(req.params.courseId)
-    const user = course.registered.indexOf(req.params.userId)
-    if (user !== -1) {
-      course.registered.splice(user, 1)
-      course.save()
-      res.json(course)
-    } else {
-      res.status(409).json({ Msg: 'This user not register in this course' })
+    const [findCourse, findUser] = await Promise.all([
+      courseModel.findById(req.params.courseId),
+      userModel.findOne(req.body)
+    ])
+    if (findCourse && findUser) {
+      const user = findCourse.registered.indexOf(findUser._id)
+      if (user !== -1) {
+        findCourse.registered.splice(user, 1)
+        findCourse.save()
+        res.json(findCourse)
+      } else {
+        res.status(409).json({ Msg: 'User does not exist' })
+      }
     }
   } catch (error) {
-    res.status(400).json({ Msg: 'Unsuscribe user is NOT possible' })
+    res.status(400).json({ Msg: 'Error while unsuscribe user' })
   }
 }
 
@@ -248,13 +258,18 @@ exports.adminUpdateOffer = async (req, res) => {
 
 exports.adminSuscribeOffer = async (req, res) => {
   try {
-    const offer = await jobModel.findbyId(req.params.offerId)
-    if (!offer.applicants.includes(req.params.userId)) {
-      offer.applicants.push(req.params.userId)
-      offer.save()
-      res.json(offer)
-    } else {
-      res.status(409).json({ Msg: 'User already applicants' })
+    const [findOffer, findUser] = await Promise.all([
+      jobModel.findById(req.params.offerId),
+      userModel.findOne(req.body)
+    ])
+    if (findOffer && findUser) {
+      if (!findOffer.applicants.includes(findUser._id)) {
+        findOffer.applicants.push(findUser._id)
+        findOffer.save()
+        res.json(findOffer)
+      } else {
+        res.status(409).json({ Msg: 'User already registered' })
+      }
     }
   } catch (error) {
     res.status(400).json({ Msg: 'Error while register user' })
@@ -263,16 +278,21 @@ exports.adminSuscribeOffer = async (req, res) => {
 
 exports.adminUnsuscribeOffer = async (req, res) => {
   try {
-    const offer = await jobModel.findById(req.params.offerId)
-    const user = offer.registered.indexOf(req.params.userId)
-    if (user !== -1) {
-      offer.applicants.splice(user, 1)
-      offer.save()
-      res.json(offer)
-    } else {
-      res.status(409).json({ Msg: 'This user not register in this offer' })
+    const [findOffer, findUser] = await Promise.all([
+      jobModel.findById(req.params.offerId),
+      userModel.findOne(req.body)
+    ])
+    if (findOffer && findUser) {
+      const user = findOffer.applicants.indexOf(findUser._id)
+      if (user !== -1) {
+        findOffer.applicants.splice(user, 1)
+        findOffer.save()
+        res.json(findOffer)
+      } else {
+        res.status(409).json({ Msg: 'User does not exist' })
+      }
     }
   } catch (error) {
-    res.status(400).json({ Msg: 'Unsuscribe user is NOT possible' })
+    res.status(400).json({ Msg: 'Error while register user' })
   }
 }

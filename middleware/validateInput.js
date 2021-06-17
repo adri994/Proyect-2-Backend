@@ -8,4 +8,10 @@ const validateInput = (req, res, next) => {
   next()
 }
 
-module.exports = validateInput
+const isCompany = (req, res, next) => {
+  const { rol } = req.token
+  if (rol === 'user') return res.status(400).json({ msg: 'You are not a company' })
+  next()
+}
+
+module.exports = { validateInput, isCompany }

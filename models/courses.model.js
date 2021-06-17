@@ -18,7 +18,7 @@ const courseSchema = new mongoose.Schema({
   },
   id_company: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'companie'
+    ref: 'companies'
   },
   certificate: {
     type: Boolean,

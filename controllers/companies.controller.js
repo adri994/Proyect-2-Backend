@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const courseModel = require('../models/courses.model')
 const companyModel = require('../models/companies.model')
-const jobModel = require('../models/jobs.model')
+const jobModel = require('../models/offers.model')
 
 const addCompany = async (req, res) => {
   try {
@@ -57,7 +57,7 @@ const createCourse = async (req, res) => {
 const updateCourse = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
-  const query = { id_company: id, _id: req.params.id_course }
+  const query = { id_company: id, _id: req.params.courseId }
   const courseEdited = await courseModel.findOneAndUpdate(query, req.body, { new: true })
   res.json(courseEdited)
 }
@@ -65,7 +65,7 @@ const updateCourse = async (req, res) => {
 const deleteCourse = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
-  const query = { id_company: id, _id: req.params.id_course }
+  const query = { id_company: id, _id: req.params.courseId }
   const courseDel = await courseModel.findOneAndDelete(query)
   res.json(courseDel)
 }
@@ -104,7 +104,7 @@ const getAllOffers = async (req, res) => {
 const deleteOffer = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
-  const query = { id_company: id, _id: req.params.id_offer }
+  const query = { id_company: id, _id: req.params.offerId }
   const oferDel = await jobModel.findOneAndDelete(query)
 
   res.json(oferDel)
@@ -113,7 +113,7 @@ const deleteOffer = async (req, res) => {
 const updateOffer = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
-  const query = { id_company: id, _id: req.params.id_offer }
+  const query = { id_company: id, _id: req.params.offerId }
   const jobEdited = await jobModel.findOneAndUpdate(query, req.body, { new: true })
   res.json(jobEdited)
 }

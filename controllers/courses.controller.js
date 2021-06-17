@@ -23,32 +23,40 @@ exports.showCourses = async (req, res) => {
   }
 }
 
-exports.registerUser = async (req, res) => {
+exports.suscribeCourseUser = async (req, res) => {
   try {
-    const course = await courseModel.findById(req.params.id)
-    if (!course.registered.includes(res.locals.result._id)) {
-      course.registered.push(res.locals.result._id)
-      course.save()
-      res.json(course)
-    } else {
-      res.status(409).json({ Msg: 'User already registered' })
-    }
+    const { id, rol } = req.token
+    if (rol === 'user') {
+      console.log(req.params)
+      const course = await courseModel.findById(req.params.courseId)
+      console.log('hola')
+      if (!course.registered.includes(id)) {
+        course.registered.push(id)
+        course.save()
+        res.json(course)
+      } else {
+        res.status(409).json({ Msg: 'User already registered' })
+      }
+    } else res.status(409).json({ Msg: 'Only users can be registered' })
   } catch (error) {
     res.status(400).json({ Msg: 'Error while register user' })
   }
 }
 
-exports.unsuscribeUser = async (req, res) => {
+exports.unsuscribeCourseUser = async (req, res) => {
   try {
-    const course = await courseModel.findById(req.params.id)
-    const user = course.registered.indexOf(res.locals.result._id)
-    if (user !== -1) {
-      course.registered.splice(user, 1)
-      course.save()
-      res.json(course)
-    } else {
-      res.status(409).json({ Msg: 'You are not register in this course' })
-    }
+    const { id, rol } = req.token
+    if (rol === 'user') {
+      const course = await courseModel.findById(req.params.courseId)
+      const user = course.registered.indexOf(id)
+      if (user !== -1) {
+        course.registered.splice(user, 1)
+        course.save()
+        res.json(course)
+      } else {
+        res.status(409).json({ Msg: 'You are not register in this course' })
+      }
+    } else res.status(409).json({ Msg: 'Only users can be registered' })
   } catch (error) {
     res.status(400).json({ Msg: 'Unsuscribe user is NOT possible' })
   }

@@ -1,7 +1,13 @@
 const router = require('express').Router()
-const validateInput = require('../middleware/validateInput')
+const { validateInput } = require('../middleware/validateInput')
 const { check } = require('express-validator')
 const { checkUser } = require('../utils/jwt')
+const { isCompany } = require('../middleware/validateInput')
+
+const {
+  suscribeCourseUser,
+  unsuscribeCourseUser
+} = require('../controllers/courses.controller')
 
 const {
   createCourse,
@@ -18,7 +24,9 @@ router.post('/', [
   check('price', 'Price must be any number').not().isEmpty(),
   validateInput
 ], createCourse)
-router.put('/:id_course', updateCourse)
-router.delete('/:id_course', deleteCourse)
+router.put('/:courseId/suscribe', checkUser, suscribeCourseUser)
+router.put('/:courseId/unsuscribe', checkUser, unsuscribeCourseUser)
+router.put('/:courseId', isCompany, updateCourse)
+router.delete('/:courseId', isCompany, deleteCourse)
 
 module.exports = router

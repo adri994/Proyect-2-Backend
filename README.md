@@ -14,16 +14,15 @@
 | KEY           | TYPE         | REFERENCE | REQUIRED | VALIDATION     |
 |------------   |--------------|-----------|----------|----------------|
 | name          | String       |           | YES      | MinLength      |
-| lastname      | String       |           | YES      | MinLength      |
+| lastName      | String       |           | YES      | MinLength      |
 | email         | String       |           | YES      | Unique         |
 | password      | String       |           | YES      |                |
-| birthdate     | Date         |           | YES      |                |
+| birthDate     | Date         |           | YES      |                |
 | city          | String       |           | NO       |                |
 | description   | String       |           | NO       |                |
-| socialmedia   | Array        |           | NO       |                |
+| socialMedia   | Array        |           | NO       |                |
 | experience    | Array        |           | NO       |                |
 | studies       | Array        |           | NO       |                |
-| specialization| Array        | Skill     | NO       |                |
 
 ## OFFERS
 
@@ -48,7 +47,7 @@
 | island      | String       |           | YES      |                |
 | address     | String       |           | NO       |                |
 | sector      | Array        |           | YES      |                |
-| socialmedia | Array        |           | NO       |                |
+| socialMedia | Array        |           | NO       |                |
 | offers      | Array        |           | NO       |                |
 
 ## COURSES
@@ -95,8 +94,8 @@
 | GET    | '/courses?'       | NO   | Get Courses filter          |
 | GET    | '/offers'         | NO   | Get Job Offers filter       |
 | GET    | '/offers?'        | NO   | Get Job Offers filter       |
-| GET    | '/:idcompany'     | YES  | Get one Company             |
-| GET    | '/:idcourse'      | YES  | Get one Course              |
+| GET    | '/:companyId'     | YES  | Get one Company             |
+| GET    | '/:courseId'      | YES  | Get one Course              |
 | PUT    | '/users'          | YES  | Edit User profile           |
 | DELETE | '/users'          | YES  | Delete current user account |
 
@@ -111,9 +110,9 @@
 | GET    | '/offers?'                | YES  | Get Offers filter           |
 | POST   | '/offers'                 | YES  | New Offer                   |
 | POST   | '/courses'                | YES  | New Course                  |
-| PUT    | '/offers/:id'             | YES  | Edit Offer                  |
-| PUT    | '/courses/:id'            | YES  | Edit Course                 |
+| PUT    | '/offers/:offerId'        | YES  | Edit Offer                  |
+| PUT    | '/courses/:courseId'      | YES  | Edit Course                 |
 | PUT    | '/companies'              | YES  | Edit Company profile        |
-| DELETE | '/courses/:id'            | YES  | Delete Course               |
-| DELETE | '/offers/:id'             | YES  | Delete offer                |
+| DELETE | '/courses/:courseId'      | YES  | Delete Course               |
+| DELETE | '/offers/:courseId'       | YES  | Delete offer                |
 | DELETE | '/companies'              | YES  | Delete current company acc. |

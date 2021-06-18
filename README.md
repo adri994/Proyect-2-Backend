@@ -1,6 +1,6 @@
 # Proyect-2-Backend
 ## Description
-Second project Reboot Academy, Canaryjob API
+Second project Reboot Academy --> \\ Canaryjob API \\ <--
 
 This is an API allow the management of search job offers, courses and workers.
 Idea of this project is to promote work in the Canary Islands, since it is difficult to find a job 

@@ -98,8 +98,6 @@ Run npm install in your console and wait a few seconds.
 | GET    | '/admin/companies'                   | YES  | Get all Companies            | 
 | GET    | '/admin/offers'                      | YES  | Get all your Offers          |
 | GET    | '/admin/courses'                     | YES  | Get all your Courses         |
-| GET    | '/admin/courses?'                    | YES  | Get Courses filter           |
-| GET    | '/admin/offers?'                     | YES  | Get Offers filter            |
 | POST   | '/admin                              | YES  | New Admin                    |
 | POST   | '/admin/users'                       | YES  | New user                     |
 | POST   | '/admin/companies'                   | YES  | New Company                  |
@@ -132,9 +130,9 @@ Run npm install in your console and wait a few seconds.
 | GET    | '/offers'                           | NO   | Get Job Offers                     |
 | GET    | '/offers?'                          | NO   | Get Job Offers filter              |
 | GET    | '/companies                         | NO   | Get Companies                      |
-| GET    | '/companies?                        | NO   | Get Companie filter                |
+| GET    | '/companies?                        | NO   | Get a Companie filter              |
 | GET    | '/courses'                          | NO   | Get Courses                        |
-| GET    | '/courses?'                         | NO   | Get Courses filter                 |
+| GET    | '/courses?'                         | NO   | Get a Course filter                |
 | PUT    | '/users'                            | YES  | Edit User profile                  |
 | PUT    | '/courses/:courseId/suscribe'       | YES  | Suscribe logged user in a course   |
 | PUT    | '/courses/:courseId/unsuscribe'     | YES  | Unsuscribe logged user in a course |

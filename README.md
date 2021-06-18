@@ -113,20 +113,20 @@
 
 ## USERS ENDPOINTS ##
 
-| METHOD | URL                                 | AUTH | FUNCTION                    |
-|--------|-------------------------------------|------|-----------------------------|
-| GET    | '/offers'                           | NO   | Get Job Offers              |
-| GET    | '/offers?'                          | NO   | Get Job Offers filter       |
-| GET    | '/companies                         | NO   | Get Companies               |
-| GET    | '/companies?                        | NO   | Get Companie filter         |
-| GET    | '/courses'                          | NO   | Get Courses                 |
-| GET    | '/courses?'                         | NO   | Get Courses filter          |
-| PUT    | '/users'                            | YES  | Edit User profile           |
-| PUT    | '/courses/:courseId/suscribe'       | YES  | Edit User profile           |
-| PUT    | '/courses/:courseId/unsuscribe'     | YES  | Edit User profile           |
-| PUT    | '/offers/:offerId/suscribe'         | YES  | Edit User profile           |
-| PUT    | '/offers/:offerId/suscribe'         | YES  | Edit User profile           |
-| DELETE | '/users'                            | YES  | Delete current user account |
+| METHOD | URL                                 | AUTH | FUNCTION                           |
+|--------|-------------------------------------|------|------------------------------------|
+| GET    | '/offers'                           | NO   | Get Job Offers                     |
+| GET    | '/offers?'                          | NO   | Get Job Offers filter              |
+| GET    | '/companies                         | NO   | Get Companies                      |
+| GET    | '/companies?                        | NO   | Get Companie filter                |
+| GET    | '/courses'                          | NO   | Get Courses                        |
+| GET    | '/courses?'                         | NO   | Get Courses filter                 |
+| PUT    | '/users'                            | YES  | Edit User profile                  |
+| PUT    | '/courses/:courseId/suscribe'       | YES  | Suscribe logged user in a course   |
+| PUT    | '/courses/:courseId/unsuscribe'     | YES  | Unsuscribe logged user in a course |
+| PUT    | '/offers/:offerId/suscribe'         | YES  | Suscribe logged user in a offer    |
+| PUT    | '/offers/:offerId/unsuscribe'       | YES  | Unsuscribe logged user in a offer  |
+| DELETE | '/users'                            | YES  | Delete current user account        |
 
 ## COMPANIES ENDPOINTS ##
 

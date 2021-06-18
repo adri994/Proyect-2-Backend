@@ -5,8 +5,8 @@ exports.suscribeOfferUser = async (req, res) => {
     const { id, rol } = req.token
     if (rol === 'user') {
       const job = await jobModel.findById(req.params.offerId)
-      if (!job.registered.includes(id)) {
-        job.registered.push(id)
+      if (!job.applicants.includes(id)) {
+        job.applicants.push(id)
         job.save()
         res.json(job)
       } else {
@@ -23,9 +23,9 @@ exports.unsuscribeOfferUser = async (req, res) => {
     const { id, rol } = req.token
     if (rol === 'user') {
       const job = await jobModel.findById(req.params.offerId)
-      const user = job.registered.indexOf(id)
+      const user = job.applicants.indexOf(id)
       if (user !== -1) {
-        job.registered.splice(user, 1)
+        job.applicants.splice(user, 1)
         job.save()
         res.json(job)
       } else {

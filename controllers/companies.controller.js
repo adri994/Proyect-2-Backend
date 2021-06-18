@@ -17,6 +17,22 @@ const addCompany = async (req, res) => {
   }
 }
 
+const getCompanies = async (req, res) => {
+  const { id, rol } = req.token
+  try {
+    if (rol === 'user') {
+      const showCompanies = await companyModel.find()
+      res.json(showCompanies)
+    } else {
+      console.log(id)
+      const showCompanies = await companyModel.findById(id)
+      res.json(showCompanies)
+    }
+  } catch (error) {
+    res.json({ msg: 'Error while get company' })
+  }
+}
+
 const editCompany = async (req, res) => {
   const verify = jwt.verify(req.headers.token, process.env.SECRET)
   const { id } = verify
@@ -141,6 +157,7 @@ const updateOffer = async (req, res) => {
 }
 
 module.exports = {
+  getCompanies,
   addCompany,
   editCompany,
   deleteCompany,

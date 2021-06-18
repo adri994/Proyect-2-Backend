@@ -1,5 +1,8 @@
 # Proyect-2-Backend
 
+
+#DATA MODELS
+
 ## ADMINS
 
 | KEY           | TYPE         | REFERENCE | REQUIRED | VALIDATION     |
@@ -114,15 +117,11 @@
 | METHOD | URL               | AUTH | FUNCTION                    |
 |--------|-------------------|------|-----------------------------|
 | GET    | '/offers'         | NO   | Get Job Offers              |
-| GET    | '/:offerId'       | YES  | Get a offer                 |
 | GET    | '/offers?'        | NO   | Get Job Offers filter       |
 | GET    | '/companies       | NO   | Get Companies               |
-| GET    | '/:companyId'     | YES  | Get a Company               |
+| GET    | '/companies?       | NO  | Get Companie filter         |
 | GET    | '/courses'        | NO   | Get Courses                 |
-| GET    | '/:courseId'      | YES  | Get a Course                |
 | GET    | '/courses?'       | NO   | Get Courses filter          |
-
-
 | PUT    | '/users'          | YES  | Edit User profile           |
 | DELETE | '/users'          | YES  | Delete current user account |
 
@@ -130,16 +129,14 @@
 
 | METHOD | URL                       | AUTH | FUNCTION                    |
 |--------|---------------------------|------|-----------------------------|
-| GET    | '/companies'              | YES  | Get all Companies           |
+| GET    | '/companies'              | YES  | Get your Company profile    |
 | GET    | '/offers'                 | YES  | Get all your Offers         |
 | GET    | '/courses'                | YES  | Get all your Courses        |
-| GET    | '/courses?'               | YES  | Get Courses filter          |
-| GET    | '/offers?'                | YES  | Get Offers filter           |
 | POST   | '/offers'                 | YES  | New Offer                   |
 | POST   | '/courses'                | YES  | New Course                  |
 | PUT    | '/offers/:offerId'        | YES  | Edit Offer                  |
 | PUT    | '/courses/:courseId'      | YES  | Edit Course                 |
 | PUT    | '/companies'              | YES  | Edit Company profile        |
 | DELETE | '/courses/:courseId'      | YES  | Delete Course               |
-| DELETE | '/offers/:courseId'       | YES  | Delete offer                |
+| DELETE | '/offers/:offerId'       | YES  | Delete offer                 |
 | DELETE | '/companies'              | YES  | Delete current company acc. |

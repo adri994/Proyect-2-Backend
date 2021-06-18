@@ -38,13 +38,8 @@ const validateDB = async (req, res, next) => {
   next()
 }
 
-const isMongo = (req, res, next) =>{
-  console.log(res.params)
-}
-
 module.exports = {
   isEmailCompany,
   isEmailUser,
-  validateDB,
-  isMongo
+  validateDB
 }

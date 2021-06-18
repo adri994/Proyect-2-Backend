@@ -4,7 +4,7 @@ exports.suscribeOfferUser = async (req, res) => {
   try {
     const { id, rol } = req.token
     if (rol === 'user') {
-      const job = await jobModel.findbyId(req.params.offerId)
+      const job = await jobModel.findById(req.params.offerId)
       if (!job.registered.includes(id)) {
         job.registered.push(id)
         job.save()

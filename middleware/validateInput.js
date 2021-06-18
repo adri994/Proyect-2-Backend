@@ -20,7 +20,6 @@ const isCompany = (req, res, next) => {
 const isEmailExist = async (req, res, next) => {
   const { rol = 'user', email } = req.body
   let existEmail
-  console.log({ email })
   if (rol === 'user') existEmail = await userModel.find({ email: email })
   else existEmail = await companyModel.findOne({ email: email })
 

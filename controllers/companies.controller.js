@@ -24,7 +24,6 @@ const getCompanies = async (req, res) => {
       const showCompanies = await companyModel.find()
       res.json(showCompanies)
     } else {
-      console.log(id)
       const showCompanies = await companyModel.findById(id)
       res.json(showCompanies)
     }
@@ -54,7 +53,6 @@ const deleteCompany = async (req, res) => {
       jobModel.deleteMany({ id_company: id })
 
     ])
-    // const companyDel = await companyModel.findByIdAndDelete(id)
     res.json(companyRemove)
   } catch (error) {
     res.status(400).json({ msg: 'Error while delete company' })
@@ -95,9 +93,8 @@ const deleteCourse = async (req, res) => {
 }
 
 const getAllCourses = async (req, res) => {
-  const { title } = req.query
-  console.log(title)
   let showCourses
+  const { title } = req.query
   const { id, rol } = req.token
   const query = { id_company: id }
   try {
@@ -117,7 +114,6 @@ const getAllCourses = async (req, res) => {
 // Offer
 
 const createOffer = async (req, res) => {
-  console.log(req.token)
   const { id } = req.token
   req.body.id_company = mongoose.Types.ObjectId(id)
   try {
@@ -130,10 +126,12 @@ const createOffer = async (req, res) => {
 
 const getAllOffers = async (req, res) => {
   let showOffers
+  const { title } = req.query
   const { id, rol } = req.token
   const query = { id_company: id }
   try {
-    if (rol === 'user') showOffers = await jobModel.find()
+    if (rol === 'user' && title) showOffers = await jobModel.find({ title })
+    else if (rol === 'user') showOffers = await jobModel.find()
     else showOffers = await jobModel.find(query)
     res.json(showOffers)
   } catch (error) {

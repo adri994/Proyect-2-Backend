@@ -27,9 +27,7 @@ exports.suscribeCourseUser = async (req, res) => {
   try {
     const { id, rol } = req.token
     if (rol === 'user') {
-      console.log(req.params)
       const course = await courseModel.findById(req.params.courseId)
-      console.log('hola')
       if (!course.registered.includes(id)) {
         course.registered.push(id)
         course.save()

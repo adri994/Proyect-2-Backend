@@ -95,12 +95,19 @@ const deleteCourse = async (req, res) => {
 }
 
 const getAllCourses = async (req, res) => {
+  const { title } = req.query
+  console.log(title)
   let showCourses
   const { id, rol } = req.token
   const query = { id_company: id }
   try {
-    if (rol === 'user') showCourses = await courseModel.find()
-    else showCourses = await courseModel.find(query)
+    if (rol === 'user' && title) {
+      showCourses = await courseModel.find({ title })
+    } else if (rol === 'user') {
+      showCourses = await courseModel.find()
+    } else {
+      showCourses = await courseModel.find(query)
+    }
     res.json(showCourses)
   } catch (error) {
     res.json({ msg: 'Error while get course' })

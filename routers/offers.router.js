@@ -8,7 +8,7 @@ const {
 } = require('../controllers/companies.controller')
 
 const {
-  inscribeOfferUser,
+  suscribeOfferUser,
   unsuscribeOfferUser
 } = require('../controllers/offers.controller')
 const { check } = require('express-validator')
@@ -23,7 +23,7 @@ router.put('/:offerId', [
   isCompany,
   validateInput
 ], updateOffer)
-router.put('/:offerId/inscribe', checkUser, inscribeOfferUser)
+router.put('/:offerId/suscribe', checkUser, suscribeOfferUser)
 router.put('/:offerId/unsuscribe', checkUser, unsuscribeOfferUser)
 
 router.post('/', [

@@ -1,9 +1,9 @@
 const jobModel = require('../models/offers.model')
 
-exports.inscribeOfferUser = async (req, res) => {
+exports.suscribeOfferUser = async (req, res) => {
   try {
     const { id, rol } = req.token
-    if (rol !== 'user') {
+    if (rol === 'user') {
       const job = await jobModel.findbyId(req.params.offerId)
       if (!job.registered.includes(id)) {
         job.registered.push(id)

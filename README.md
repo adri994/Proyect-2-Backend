@@ -37,7 +37,6 @@
 | position    | String       |           | YES      |                |
 | salary      | Object       |           | NO       |                |
 | applicants  | Array        |           | NO       |                |
-| requirements| Array        | Skill     | YES      |                |
 
 ## COMPANIES
 

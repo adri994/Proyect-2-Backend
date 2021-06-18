@@ -113,16 +113,20 @@
 
 ## USERS ENDPOINTS ##
 
-| METHOD | URL               | AUTH | FUNCTION                    |
-|--------|-------------------|------|-----------------------------|
-| GET    | '/offers'         | NO   | Get Job Offers              |
-| GET    | '/offers?'        | NO   | Get Job Offers filter       |
-| GET    | '/companies       | NO   | Get Companies               |
-| GET    | '/companies?       | NO  | Get Companie filter         |
-| GET    | '/courses'        | NO   | Get Courses                 |
-| GET    | '/courses?'       | NO   | Get Courses filter          |
-| PUT    | '/users'          | YES  | Edit User profile           |
-| DELETE | '/users'          | YES  | Delete current user account |
+| METHOD | URL                                 | AUTH | FUNCTION                    |
+|--------|-------------------------------------|------|-----------------------------|
+| GET    | '/offers'                           | NO   | Get Job Offers              |
+| GET    | '/offers?'                          | NO   | Get Job Offers filter       |
+| GET    | '/companies                         | NO   | Get Companies               |
+| GET    | '/companies?                        | NO   | Get Companie filter         |
+| GET    | '/courses'                          | NO   | Get Courses                 |
+| GET    | '/courses?'                         | NO   | Get Courses filter          |
+| PUT    | '/users'                            | YES  | Edit User profile           |
+| PUT    | '/courses/:courseId/suscribe'       | YES  | Edit User profile           |
+| PUT    | '/courses/:courseId/unsuscribe'     | YES  | Edit User profile           |
+| PUT    | '/offers/:offerId/suscribe'         | YES  | Edit User profile           |
+| PUT    | '/offers/:offerId/suscribe'         | YES  | Edit User profile           |
+| DELETE | '/users'                            | YES  | Delete current user account |
 
 ## COMPANIES ENDPOINTS ##
 
@@ -137,5 +141,5 @@
 | PUT    | '/courses/:courseId'      | YES  | Edit Course                 |
 | PUT    | '/companies'              | YES  | Edit Company profile        |
 | DELETE | '/courses/:courseId'      | YES  | Delete Course               |
-| DELETE | '/offers/:offerId'       | YES  | Delete offer                 |
+| DELETE | '/offers/:offerId'        | YES  | Delete offer                |
 | DELETE | '/companies'              | YES  | Delete current company acc. |

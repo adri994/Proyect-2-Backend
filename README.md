@@ -1,7 +1,21 @@
 # Proyect-2-Backend
+## Description
+Second project Reboot Academy, Canaryjob API
+
+This is an API that allows the management of search job offers, courses and workers.
+Idea of this project is to promote work in the Canary Islands, since it is difficult to find a job 
+
+## Technologies
+JS
+Node
+MongoDB
+Express
 
 
-#DATA MODELS
+## How Install
+Run npm install in your console and wait a few seconds.
+
+# DATA MODELS
 
 ## ADMINS
 
